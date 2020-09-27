@@ -2,15 +2,34 @@
 A very slow offline renderer.
 
 ## Modules:
-- PPM/PFM writter/reader
+- Core
 - Renderer
-- USD reader
-- FBX reader
+- Output
+- Input*
+
+## Core:
+- Random*
+- Vector
+- Quaternion*
+- Matrix*
+- Transform*
+- Entity*
+- Color
 
 ## Renderer:
-- Camera
-- Ray
-- Scene
-- LightSource
-- RenderObject
-- Material
+- Camera*
+- Ray*
+- Scene*
+- LightSource*
+- RenderEntity*
+- Material*
+- ColorBuffer
+
+## Output
+- ImageWritter
+
+## Input
+- SceneReader*
+- MeshReader*
+- TextureReader*
+- MaterialReader*

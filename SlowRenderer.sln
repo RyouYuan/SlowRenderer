@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlowRenderer", "SlowRenderer\SlowRenderer.csproj", "{0650AEF0-BA44-414A-9199-D4BC77D08A46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0650AEF0-BA44-414A-9199-D4BC77D08A46}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{0650AEF0-BA44-414A-9199-D4BC77D08A46}.Debug|anycpu.Build.0 = Debug|anycpu
+		{0650AEF0-BA44-414A-9199-D4BC77D08A46}.Release|anycpu.ActiveCfg = Release|anycpu
+		{0650AEF0-BA44-414A-9199-D4BC77D08A46}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+EndGlobal

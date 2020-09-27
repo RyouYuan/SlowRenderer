@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
+    <ProjectGuid>{0650AEF0-BA44-414A-9199-D4BC77D08A46}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>SlowRenderer</RootNamespace>
+    <AssemblyName>SlowRenderer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|anycpu' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|anycpu' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Application.cs" />
+    <Compile Include="Core\Color.cs" />
+    <Compile Include="Core\Vector.cs" />
+    <Compile Include="Output\ImageWriter.cs" />
+    <Compile Include="Render\ColorBuffer.cs" />
+    <Compile Include="Render\Camera.cs" />
+    <Compile Include="Core\Matrix4x4.cs" />
+    <Compile Include="Core\Quaternion.cs" />
+    <Compile Include="Core\Transform.cs" />
+    <Compile Include="Core\Entity.cs" />
+    <Compile Include="Render\RenderEntity.cs" />
+    <Compile Include="Render\Material.cs" />
+    <Compile Include="Render\Ray.cs" />
+    <Compile Include="Render\Scene.cs" />
+    <Compile Include="Core\Random.cs" />
+    <Compile Include="Render\SkyBox.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+    <Folder Include="Output\" />
+    <Folder Include="Render\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
