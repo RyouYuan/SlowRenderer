@@ -1,6 +1,6 @@
 ﻿namespace SlowRenderer.Core
 {
-    public class Entity
+    public abstract class Entity
     {
         public Transform transform;
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using SlowRenderer.Render;
 
 namespace SlowRenderer
 {
@@ -7,17 +8,16 @@ namespace SlowRenderer
         static void Main(string[] args)
         {
             string path = "test.bmp";
-            Render.ColorBuffer cb = new Render.ColorBuffer(128, 128);
-            for (int x = 0; x < cb.width; x++)
-            {
-                for (int y = 0; y < cb.height; y++)
-                {
-                    cb.pixels[x, y] = Core.Color.gray;
-                }
-            }
+
+            Camera cam = new Camera(128, 128);
+            SkyBox sb = new SimpleSky();
+            Scene scene = new Scene();
+            scene.camera = cam;
+            scene.sky = sb;
+            scene.camera.Render(scene);
 
             Glue.ImageWritter writter = new Glue.ImageWritter(path);
-            writter.Write(cb);
+            writter.Write(cam.buffer);
             Console.WriteLine("Output image at: " + path);
             Console.ReadKey();
         }

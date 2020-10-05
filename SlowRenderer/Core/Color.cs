@@ -3,15 +3,15 @@
     //Linear color
     public struct Color
     {
-        public float r, g, b;
+        public double r, g, b;
 
         #region Construct
-        public Color(float value)
+        public Color(double value)
         {
             r = g = b = value;
         }
 
-        public Color(float r, float g, float b)
+        public Color(double r, double g, double b)
         {
             this.r = r;
             this.g = g;
@@ -20,9 +20,9 @@
 
         public Color(Vector3 v)
         {
-            r = (float)v.x;
-            g = (float)v.y;
-            b = (float)v.z;
+            r = v.x;
+            g = v.y;
+            b = v.z;
         }
         #endregion
 
@@ -32,12 +32,12 @@
             return new Color(a.r * b.r, a.g * b.g, a.b * b.b);
         }
 
-        public static Color operator *(float a, Color b)
+        public static Color operator *(double a, Color b)
         {
             return new Color(a * b.r, a * b.g, a * b.b);
         }
 
-        public static Color operator *(Color a, float b)
+        public static Color operator *(Color a, double b)
         {
             return b * a;
         }
@@ -73,6 +73,11 @@
             Color ret = new Color(floor.r > value.r ? floor.r : value.r, floor.g > value.g ? floor.g : value.g, floor.b > value.b ? floor.b : value.b);
             ret = new Color(ceil.r < ret.r ? ceil.r : ret.r, ceil.g < ret.g ? ceil.g : ret.g, ceil.b < ret.b ? ceil.b : ret.b);
             return ret;
+        }
+
+        public static Color Lerp(Color a, Color b, double t)
+        {
+            return a + (b - a) * t;
         }
         #endregion
 
