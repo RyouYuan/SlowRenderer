@@ -6,6 +6,14 @@ namespace SlowRenderer.Render
     {
         public Material material;
 
-        public abstract Color GetColor(Ray ray, Vector3 hit);
+        public virtual void ColorRay(Ray ray)
+        {
+            Vector3 geoNor = GetGeoNormal(ray.GetHitPiont());
+            material.ColorRay(geoNor, ray);
+        }
+
+        public abstract float GetHitInfo(Ray ray);
+
+        public abstract Vector3 GetGeoNormal(Vector3 pos);
     }
 }

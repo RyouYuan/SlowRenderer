@@ -2,6 +2,6 @@
 {
     public abstract class Entity
     {
-        public Transform transform;
+        public Transform transform = new Transform();
     }
 }

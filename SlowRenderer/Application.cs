@@ -9,15 +9,12 @@ namespace SlowRenderer
         {
             string path = "test.bmp";
 
-            Camera cam = new Camera(128, 128);
-            SkyBox sb = new SimpleSky();
             Scene scene = new Scene();
-            scene.camera = cam;
-            scene.sky = sb;
+            scene.InitScene();
             scene.camera.Render(scene);
 
             Glue.ImageWritter writter = new Glue.ImageWritter(path);
-            writter.Write(cam.buffer);
+            writter.Write(scene.camera.buffer);
             Console.WriteLine("Output image at: " + path);
             Console.ReadKey();
         }

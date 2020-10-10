@@ -40,12 +40,17 @@
     <Compile Include="Render\Ray.cs" />
     <Compile Include="Render\Scene.cs" />
     <Compile Include="Core\Random.cs" />
-    <Compile Include="Render\SkyBox.cs" />
+    <Compile Include="Render\Materials\SimpleSky.cs" />
+    <Compile Include="Render\RenderEntities\SkyBox.cs" />
+    <Compile Include="Render\RenderEntities\Sphere.cs" />
+    <Compile Include="Render\Materials\GeometryNormal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
     <Folder Include="Output\" />
     <Folder Include="Render\" />
+    <Folder Include="Render\Materials\" />
+    <Folder Include="Render\RenderEntities\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Drawing" />

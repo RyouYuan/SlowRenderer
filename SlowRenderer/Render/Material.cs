@@ -2,7 +2,8 @@
 
 namespace SlowRenderer.Render
 {
-    public class Material
+    public abstract class Material
     {
+        public abstract void ColorRay(Vector3 normal, Ray ray);
     }
 }

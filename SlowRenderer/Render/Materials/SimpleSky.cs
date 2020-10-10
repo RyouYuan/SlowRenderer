@@ -2,12 +2,7 @@
 
 namespace SlowRenderer.Render
 {
-    public abstract class SkyBox : RenderEnity
-    {
-
-    }
-
-    public class SimpleSky : SkyBox
+    public class SimpleSky : Material
     {
         public Color skyColor;
         public Color horizonColor;
@@ -15,9 +10,9 @@ namespace SlowRenderer.Render
 
         public SimpleSky()
         {
-            skyColor =  new Color(0.5f, 0.7f, 1.0f);
+            skyColor = new Color(0.5f, 0.7f, 1.0f);
             horizonColor = new Color(1f, 1f, 1f);
-            groundColor = new Color(1.0f, 0.7f, 0.5f);
+            groundColor = new Color(0.7f, 0.7f, 0.7f);
         }
 
         public SimpleSky(Color sky, Color horizon, Color ground)
@@ -27,16 +22,25 @@ namespace SlowRenderer.Render
             groundColor = ground;
         }
 
-        public override Color GetColor(Ray ray, Vector3 hit)
+        public override void ColorRay(Vector3 normal, Ray ray)
         {
             var t = ray.direction.y;
-            if (t > 0)
+
+            if (t > 0.2f)
             {
-                return Color.Lerp(horizonColor, skyColor, t);
+                ray.color *= skyColor;
+            }
+            else if (t > 0)
+            {
+                ray.color *= Color.Lerp(horizonColor, skyColor, t * 5f);
+            }
+            else if (t > -0.2f)
+            {
+                ray.color *= Color.Lerp(horizonColor, groundColor, -t * 5f);
             }
             else
             {
-                return groundColor;
+                ray.color = groundColor;
             }
         }
     }
