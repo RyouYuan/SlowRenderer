@@ -22,10 +22,13 @@ namespace SlowRenderer.Render
             groundColor = ground;
         }
 
-        public override void ColorRay(Vector3 normal, Ray ray)
+        public override void Scatter(Vector3 normal, Ray ray)
+        {
+        }
+
+        public override void ColorRay(Ray ray)
         {
             var t = ray.direction.y;
-
             if (t > 0.2f)
             {
                 ray.color *= skyColor;
@@ -40,7 +43,7 @@ namespace SlowRenderer.Render
             }
             else
             {
-                ray.color = groundColor;
+                ray.color *= groundColor;
             }
         }
     }

@@ -4,6 +4,12 @@ namespace SlowRenderer.Render
 {
     public class SkyBox : RenderEnity
     {
+        public override void Scatter(Ray ray)
+        {
+            ray.hitDepth = 0;
+            ray.hitPos = 0;
+        }
+
         public override float GetHitInfo(Ray ray)
         {
             return float.PositiveInfinity;

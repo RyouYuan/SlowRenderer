@@ -8,6 +8,7 @@ namespace SlowRenderer.Render
         private Vector3 _direction;
         public float hitPos = float.PositiveInfinity;
         public Color color = Color.white;
+        public int hitDepth;
 
         public Vector3 direction
         {
@@ -21,10 +22,11 @@ namespace SlowRenderer.Render
             }
         }
 
-        public Ray(Vector3 origin, Vector3 direction)
+        public Ray(Vector3 origin, Vector3 direction, int hitDepth)
         {
             this.origin = origin;
             _direction = direction.normalized;
+            this.hitDepth = hitDepth;
         }
 
         public Vector3 GetPoint(float t)

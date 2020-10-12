@@ -17,12 +17,12 @@ namespace SlowRenderer.Render
 
             var s = new Sphere(0.5f);
             s.transform.position = new Vector3(0, 0, 1);
-            s.material = new GeometryNormal(Color.red);
+            s.material = new Lambertian(Color.red);
             rendererList.Add(s);
 
             var ground = new Sphere(100f);
             ground.transform.position = new Vector3(0, -100.5f, 1);
-            ground.material = new GeometryNormal(Color.red);
+            ground.material = new Lambertian(Color.gray);
             rendererList.Add(ground);
         }
 
@@ -32,7 +32,7 @@ namespace SlowRenderer.Render
             for (int i = 0; i < rendererList.Count; i++)
             {
                 float t = rendererList[i].GetHitInfo(ray);
-                if (t < ray.hitPos)
+                if (t < ray.hitPos && t >= 0)
                 {
                     hitIdx = i;
                     ray.hitPos = t;
@@ -46,11 +46,21 @@ namespace SlowRenderer.Render
             int idx = DoRayCast(ray);
             if (idx >= 0)
             {
-                rendererList[idx].ColorRay(ray);
+                if (ray.hitDepth > 0)
+                {
+                    rendererList[idx].Scatter(ray);
+                    ColorRay(ray);
+                    rendererList[idx].Shade(ray);
+                }
+                else
+                {
+                    //We here suppose this ray's radiance is too small to scatter.
+                    ray.color = Color.black;
+                }
             }
             else
             {
-                sky.ColorRay(ray);
+                sky.Shade(ray);
             }
         }
     }

@@ -226,6 +226,11 @@ namespace SlowRenderer.Core
             return new Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
         }
 
+        public static Vector3 Reflect(Vector3 v, Vector3 n)
+        {
+            return v - 2 * (Dot(v, n) * n);
+        }
+
         public static Vector3 Lerp(Vector3 a, Vector3 b, double t)
         {
             return a + (b - a) * t;

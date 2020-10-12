@@ -6,15 +6,12 @@ namespace SlowRenderer.Render
     {
         public double fov = 4f;
         public ColorBuffer buffer;
+        public int depth = 50;
+        public int spp = 100;
 
         public Camera(int width, int height)
         {
             buffer = new ColorBuffer(width, height);
-        }
-
-        public void RayTrace(Ray r, Scene scene)
-        {
-            scene.ColorRay(r);
         }
 
         public void Render(Scene scene)
@@ -28,18 +25,20 @@ namespace SlowRenderer.Render
             var origin = Vector3.zero;
             //todo: tranform calculation here.
 
-            for (int i = 0; i < nx; i++)
+            for (int k = 0; k < spp; k++)
             {
-                for (int j = 0; j < ny; j++)
+                for (int i = 0; i < nx; i++)
                 {
-                    var u = i / nx;
-                    var v = j / ny;
-                    Ray r = new Ray(origin, lowerLeft + u * horizon + v * vertical - origin);
-                    RayTrace(r, scene);
-                    buffer.pixels[i, j] = r.color;
+                    for (int j = 0; j < ny; j++)
+                    {
+                        var u = (i + CoreRandom.Sample()) / nx;
+                        var v = (j + CoreRandom.Sample()) / ny;
+                        Ray r = new Ray(origin, lowerLeft + u * horizon + v * vertical - origin, depth);
+                        scene.ColorRay(r);
+                        buffer.pixels[i, j] = (buffer.pixels[i, j] * k + r.color) / (k + 1);
+                    }
                 }
             }
-
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SlowRenderer
             Glue.ImageWritter writter = new Glue.ImageWritter(path);
             writter.Write(scene.camera.buffer);
             Console.WriteLine("Output image at: " + path);
-            Console.ReadKey();
+            //Console.ReadKey();
         }
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -27,6 +27,8 @@
   <ItemGroup>
     <Compile Include="Application.cs" />
     <Compile Include="Core\Color.cs" />
+    <Compile Include="Core\Random\PesudoGenerator.cs" />
+    <Compile Include="Core\Random\RandomNumerGenerator.cs" />
     <Compile Include="Core\Vector.cs" />
     <Compile Include="Output\ImageWriter.cs" />
     <Compile Include="Render\ColorBuffer.cs" />
@@ -35,23 +37,17 @@
     <Compile Include="Core\Quaternion.cs" />
     <Compile Include="Core\Transform.cs" />
     <Compile Include="Core\Entity.cs" />
+    <Compile Include="Render\Materials\Lambertian.cs" />
     <Compile Include="Render\RenderEntity.cs" />
     <Compile Include="Render\Material.cs" />
     <Compile Include="Render\Ray.cs" />
     <Compile Include="Render\Scene.cs" />
-    <Compile Include="Core\Random.cs" />
+    <Compile Include="Core\Random\CoreRandom.cs" />
     <Compile Include="Render\Materials\SimpleSky.cs" />
     <Compile Include="Render\RenderEntities\SkyBox.cs" />
     <Compile Include="Render\RenderEntities\Sphere.cs" />
-    <Compile Include="Render\Materials\GeometryNormal.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Core\" />
-    <Folder Include="Output\" />
-    <Folder Include="Render\" />
-    <Folder Include="Render\Materials\" />
-    <Folder Include="Render\RenderEntities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="System.Drawing" />
   </ItemGroup>

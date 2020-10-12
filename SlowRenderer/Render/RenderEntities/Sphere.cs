@@ -19,7 +19,7 @@ namespace SlowRenderer.Render
             double b = 2 * Vector3.Dot(oc, ray.direction);
             double c = oc.sqrMagnitute - radius * radius;
             double d = b * b - 4 * a * c;
-            if (d >= 0)
+            if (d > 0.001)
             {
                 double t = (-b - Math.Sqrt(d)) / (2f * a);
                 return t < float.PositiveInfinity && t >= 0 ? (float)t : float.PositiveInfinity;
