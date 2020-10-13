@@ -24,7 +24,7 @@ namespace SlowRenderer.Glue
                 {
                     //Image pixels starts from upper left, while our color buffer starts from lower left.
                     //So we revert y axis here.
-                    img.SetPixel(x, y, cb.pixels[x, cb.height - 1 - y].ToSystemColor());
+                    img.SetPixel(x, y, cb.pixels[x, cb.height - 1 - y].Gamma().ToSystemColor());
                 }
             }
             img.Save(path, ImageFormat.Bmp);

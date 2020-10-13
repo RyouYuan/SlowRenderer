@@ -17,7 +17,7 @@ namespace SlowRenderer.Render
 
             var s = new Sphere(0.5f);
             s.transform.position = new Vector3(0, 0, 1);
-            s.material = new Lambertian(Color.red);
+            s.material = new Lambertian(Color.gray);
             rendererList.Add(s);
 
             var ground = new Sphere(100f);

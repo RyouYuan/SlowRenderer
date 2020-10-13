@@ -84,6 +84,18 @@
         {
             return a + (b - a) * t;
         }
+
+        public Color Gamma()
+        {
+            var pow = 1 / 2.2f;
+            return new Color(System.Math.Pow(r, pow), System.Math.Pow(g, pow), System.Math.Pow(b, pow));
+        }
+
+        public Color DeGamma()
+        {
+            var pow = 2.2f;
+            return new Color(System.Math.Pow(r, pow), System.Math.Pow(g, pow), System.Math.Pow(b, pow));
+        }
         #endregion
 
         #region System
