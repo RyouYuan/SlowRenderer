@@ -11,10 +11,11 @@ namespace SlowRenderer.Render
             this.albedo = albedo;
         }
 
-        public override void Scatter(Vector3 normal, Ray ray)
+        public override bool Scatter(Vector3 normal, Ray ray)
         {
             ray.origin = ray.GetHitPiont();
             ray.direction = normal + CoreRandom.SampleUnitSphere();
+            return true;
         }
 
         public override void ColorRay(Ray ray)

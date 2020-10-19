@@ -32,7 +32,7 @@ namespace SlowRenderer.Render
 
         public override Vector3 GetGeoNormal(Vector3 pos)
         {
-            return (pos - transform.position).normalized;
+            return (pos - transform.position) / radius;
         }
     }
 }

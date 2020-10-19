@@ -15,14 +15,29 @@ namespace SlowRenderer.Render
             sky = new SkyBox();
             sky.material = new SimpleSky();
 
-            var s = new Sphere(0.5f);
-            s.transform.position = new Vector3(0, 0, 1);
-            s.material = new Lambertian(Color.gray);
-            rendererList.Add(s);
+            var s0 = new Sphere(0.5f);
+            s0.transform.position = new Vector3(0f, 0f, 1f);
+            s0.material = new Lambertian(new Color(0.1f, 0.2f, 0.5f));
+            rendererList.Add(s0);
+
+            var s1 = new Sphere(0.5f);
+            s1.transform.position = new Vector3(1f, 0f, 1f);
+            s1.material = new Metal(new Color(0.8f, 0.6f, 0.2f), 1f);
+            rendererList.Add(s1);
+
+            var s2 = new Sphere(0.5f);
+            s2.transform.position = new Vector3(-1, 0, 1);
+            s2.material = new SchlikDielectrics(new Color(1f, 1f, 1f), 1.5f);
+            rendererList.Add(s2);
+
+            var s2inner = new Sphere(-0.45f);
+            s2inner.transform.position = new Vector3(-1, 0, 1);
+            s2inner.material = new SchlikDielectrics(new Color(1f, 1f, 1f), 1.5f);
+            rendererList.Add(s2inner);
 
             var ground = new Sphere(100f);
-            ground.transform.position = new Vector3(0, -100.5f, 1);
-            ground.material = new Lambertian(Color.gray);
+            ground.transform.position = new Vector3(0f, -100.5f, 1f);
+            ground.material = new Lambertian(new Color(0.8f, 0.8f, 0f));
             rendererList.Add(ground);
         }
 
@@ -46,15 +61,14 @@ namespace SlowRenderer.Render
             int idx = DoRayCast(ray);
             if (idx >= 0)
             {
-                if (ray.hitDepth > 0)
+                if (ray.hitDepth > 0 && rendererList[idx].Scatter(ray))
                 {
-                    rendererList[idx].Scatter(ray);
                     ColorRay(ray);
                     rendererList[idx].Shade(ray);
                 }
                 else
                 {
-                    //We here suppose this ray's radiance is too small to scatter.
+                    //We here suppose this ray's radiance is too small to scatter or go into metal surface.
                     ray.color = Color.black;
                 }
             }

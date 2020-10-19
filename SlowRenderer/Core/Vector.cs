@@ -231,6 +231,23 @@ namespace SlowRenderer.Core
             return v - 2 * (Dot(v, n) * n);
         }
 
+        public static bool Refract(Vector3 v, Vector3 n, double niByNt, out Vector3 refracted)
+        {
+            var vDir = v.normalized;
+            double vDn = Dot(vDir, n);
+            double discrimianant = 1f - niByNt * niByNt * (1f - vDn * vDn);
+            if (discrimianant > 0)
+            {
+                refracted = niByNt * (vDir - n * vDn) - n * Math.Sqrt(discrimianant);
+                return true;
+            }
+            else
+            {
+                refracted = zero;
+                return false;
+            }
+        }
+
         public static Vector3 Lerp(Vector3 a, Vector3 b, double t)
         {
             return a + (b - a) * t;
@@ -306,7 +323,12 @@ namespace SlowRenderer.Core
         {
             get
             {
-                return this / magnitute;
+                var mag = magnitute;
+                if (mag == 0)
+                {
+                    throw (new SystemException("Normalized a zero vector."));
+                }
+                return this / mag;
             }
         }
         #endregion

@@ -22,8 +22,9 @@ namespace SlowRenderer.Render
             groundColor = ground;
         }
 
-        public override void Scatter(Vector3 normal, Ray ray)
+        public override bool Scatter(Vector3 normal, Ray ray)
         {
+            return false;
         }
 
         public override void ColorRay(Ray ray)
